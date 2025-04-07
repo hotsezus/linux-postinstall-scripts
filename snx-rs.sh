@@ -8,6 +8,18 @@ fi
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+
+echo -e "${YELLOW}Installing dependencies using package manager${NC}"
+if [ -x "$(command -v apt)" ];
+then
+    sudo apt install -y libayatana-appindicator3-dev
+elif [ -x "$(command -v dnf)" ];
+then
+    sudo dnf install -y libayatana-appindicator-gtk3-devel
+else
+    echo "Package manager not found. You must manually install: libappindicator-gtk3-devel. Package should provide dynamic libraries ";
+fi
+
 echo -e "${YELLOW}Copy binaries to /opt/snx-rs/${NC}"
 mkdir -vp /opt/snx-rs
 cp --verbose snxctl /opt/snx-rs/snxctl
