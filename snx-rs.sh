@@ -12,12 +12,12 @@ NC='\033[0m'
 echo -e "${YELLOW}Installing dependencies using package manager${NC}"
 if [ -x "$(command -v apt)" ];
 then
-    sudo apt install -y libayatana-appindicator3-dev
+    apt install -y libayatana-appindicator3-dev
 elif [ -x "$(command -v dnf)" ];
 then
-    sudo dnf install -y libayatana-appindicator-gtk3-devel
+    dnf install -y libayatana-appindicator-gtk3-devel
 else
-    echo "Package manager not found. You must manually install: libappindicator-gtk3-devel. Package should provide dynamic libraries ";
+    echo "Package manager not found. You must manually install: libappindicator-gtk3-devel. Package should provide `libappindicator3` dynamic libraries because snx-rs-gui depends on `libappindicator3`";
 fi
 
 echo -e "${YELLOW}Copy binaries to /opt/snx-rs/${NC}"
