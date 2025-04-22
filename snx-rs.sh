@@ -8,7 +8,6 @@ fi
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-
 echo -e "${YELLOW}Installing dependencies using package manager${NC}"
 if [ -x "$(command -v apt)" ];
 then
@@ -19,6 +18,10 @@ then
 else
     echo "Package manager not found. You must manually install: libappindicator-gtk3-devel. Package should provide `libappindicator3` dynamic libraries because snx-rs-gui depends on `libappindicator3`";
 fi
+
+echo -e "${YELLOW}Stop service${NC}"
+systemctl stop snx-rs.service
+systemctl status snx-rs.service
 
 echo -e "${YELLOW}Copy binaries to /opt/snx-rs/${NC}"
 mkdir -vp /opt/snx-rs
